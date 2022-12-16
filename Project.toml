@@ -1,0 +1,4 @@
+name = "Advent_of_Code_2022"
+uuid = "9c89eaf0-9965-4cb3-9ee9-7cc62289d560"
+authors = ["Philip Stuckey <developer.philip_stuckey@fastmail.com>"]
+version = "0.1.0"
