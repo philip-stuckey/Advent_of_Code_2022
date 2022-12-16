@@ -1,8 +1,11 @@
 module rock_paper_scissors
 
-@enum Shape Rock=1 Paper Scissors
+using StaticArrays
+using LinearAlgebra
 
-shape_map = Dict{Char, Shape}(
+const Rock,Paper,Scissors = eachcol(SMatrix{3,3}(I))
+
+shape_map = Dict(
 	'A' => Rock,
 	'B' => Paper,
 	'C' => Scissors,
@@ -24,9 +27,26 @@ function parse_guide(iter)
 	return parse_strategum.(iter)
 end
 
-score(s::Shape) = Int(shape)
+winner = SMatrix{3,3}(
+[
+	 0 -1  1;
+	 1  0 -1;
+	-1 -1  0
+])
+
+outcome = winner .* 3 .+ 3
+
+score_matrix = SMatrix{3,3}(
+[
+	1 1 1;
+	2 2 2;
+	3 3 3 
+])
+
+score((your_move, opponents_move)) = your_move'*(outcome + score_matrix)*opponents_move
 
 get_guide(file="inputs/rps-guide.txt") = parse_guide(eachline(file))
 
+score_guide(guide=get_guide()) = sum(score, guide)
 
 end
