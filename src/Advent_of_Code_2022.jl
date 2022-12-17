@@ -7,4 +7,7 @@ include("calorie-counting.jl")
 export rock_paper_scissors
 include("rock-paper-scissors.jl")
 
+export rock_paper_scissors2
+include("rock-paper-scissors2.jl")
+
 end # module Advent_of_Code_2022
