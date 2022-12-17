@@ -23,9 +23,7 @@ function parse_strategum(move_string)
 	return move => response
 end
 
-function parse_guide(iter)
-	return parse_strategum.(iter)
-end
+parse_guide(iter) = parse_strategum.(iter)
 
 winner = SMatrix{3,3}(
 [
