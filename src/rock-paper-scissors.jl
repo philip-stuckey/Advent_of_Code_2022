@@ -31,7 +31,7 @@ winner = SMatrix{3,3}(
 [
 	 0 -1  1;
 	 1  0 -1;
-	-1 -1  0
+	-1  1  0
 ])
 
 outcome = winner .* 3 .+ 3
@@ -43,7 +43,7 @@ score_matrix = SMatrix{3,3}(
 	3 3 3 
 ])
 
-score((your_move, opponents_move)) = your_move'*(outcome + score_matrix)*opponents_move
+score((enemy_move,your_move)) = your_move'*(outcome + score_matrix)*enemy_move #'
 
 get_guide(file="inputs/rps-guide.txt") = parse_guide(eachline(file))
 
