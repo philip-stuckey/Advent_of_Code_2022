@@ -24,6 +24,7 @@ parse_guide(iter) = parse_strategum.(iter)
 get_guide(file="inputs/rps-guide.txt")=parse_guide(eachline(file))
 
 shape_score(s::Shape)= Int(s)
+shape_score(p::Pair{Shape, Shape})=shape_score(last(p))
 
 winning_moves = Set([
 	Rock=>Scissors,
@@ -35,19 +36,19 @@ const win_score = 6
 const draw_score = 3
 const loss_score = 0
 
-function win_score((move, response))
+function game_score((move, response))
 	return if move == response
 		draw_score
 	elseif (move=>response) in winning_moves
-		win_score
-	elseif (response=>move) in winning_moves
 		loss_score
+	elseif (response=>move) in winning_moves
+		win_score
 	else
 		error("wat")
 	end
 end
 
-score((move, response)) = shape_score(move)+win_score(move=>response)
+score((move, response)) = shape_score(response)+game_score(move=>response)
 
 main(guide=get_guide())=sum(score, guide)
 

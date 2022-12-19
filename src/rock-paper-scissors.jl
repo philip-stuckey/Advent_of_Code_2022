@@ -27,9 +27,9 @@ parse_guide(iter) = parse_strategum.(iter)
 
 winner = SMatrix{3,3}(
 [
-	 0 -1  1;
-	 1  0 -1;
-	-1  1  0
+	 0 1  -1;
+	 -1  0  1;
+	 1  -1  0
 ])
 
 outcome = winner .* 3 .+ 3
@@ -41,10 +41,13 @@ score_matrix = SMatrix{3,3}(
 	3 3 3 
 ])
 
+game_score((enemy_move, your_move))=your_move'*outcome*enemy_move
+shape_score((enemy_move, your_move))=your_move'*score_matrix*enemy_move
+
 score((enemy_move,your_move)) = your_move'*(outcome + score_matrix)*enemy_move #'
 
 get_guide(file="inputs/rps-guide.txt") = parse_guide(eachline(file))
 
 score_guide(guide=get_guide()) = sum(score, guide)
-
+const main=score_guide
 end
