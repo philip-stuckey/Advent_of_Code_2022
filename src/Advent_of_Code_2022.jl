@@ -13,4 +13,7 @@ include("rock-paper-scissors2.jl")
 export rock_paper_scissors_part2
 include("rock-paper-scissors-part2.jl")
 
+export rucksack
+include("rucksack.jl")
+
 end # module Advent_of_Code_2022
