@@ -16,4 +16,7 @@ include("rock-paper-scissors-part2.jl")
 export rucksack
 include("rucksack.jl")
 
+export camp_cleanup
+include("camp-cleanup.jl")
+
 end # module Advent_of_Code_2022
